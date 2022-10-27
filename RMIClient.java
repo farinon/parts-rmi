@@ -28,16 +28,11 @@ public class RMIClient {
                             int o = scanner.nextInt();
                             partRepositoryMenu.choose(o);
                         }
-                        
-                        /* 
-			
-			System.out.println("O servidor retorna: " + myServerObject.inverteTexto("tiago"));
-			System.out.println("O servidor retorna: " + myServerObject.concatenaTexto("cris", "tiago"));
-			 */
-			
+ 
 		}
 		catch(Exception e) {
 			System.out.println("Exception occured: " + e);
+			e.printStackTrace();
 			System.exit(0);
 		}
 		System.out.println("Conexão RMI realizada com sucesso");

@@ -13,9 +13,7 @@ public class Part extends UnicastRemoteObject {
     private String description;
     private ArrayList<Part> subParts = new ArrayList<Part>();
 
-    public Part() throws RemoteException{
-
-    }
+    public Part() throws RemoteException{}
     
     
     public long getCode() throws RemoteException{
@@ -52,10 +50,6 @@ public class Part extends UnicastRemoteObject {
 
     public void setDescription(String description) throws RemoteException{
         this.description = description;
-    }
-
-    public void setSubParts(ArrayList<Part> subParts) throws RemoteException{
-        this.subParts = subParts;
     }
 
     public void addSubPart(Part part)throws RemoteException{

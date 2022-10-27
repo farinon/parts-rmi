@@ -72,7 +72,8 @@ public class PartRepositoryMenu {
 	            break;	        
 	        case 4:
                     System.out.println("Código da Peça: ");
-                    int partCode = scanner.nextInt();                    
+                    int partCode = scanner.nextInt();
+                    part = new Part();                    
                     part = p.getPart(partCode);
                     part.toString();
 	            break;	        

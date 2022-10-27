@@ -3,10 +3,12 @@
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.util.Scanner;
 
 public class RMIServer {
-        static Scanner reader = new Scanner(System.in);
+    
+	static Scanner reader = new Scanner(System.in);
 	public static void main(String[] argv) {
 
 // para executar de uma forma segura, pode-se utilizar um arquivo de configuração com polices ...(premissao.policy) 
@@ -18,7 +20,7 @@ public class RMIServer {
 
 		try { 
 // Iniciar a execução do registry na porta desejada
-			java.rmi.registry.LocateRegistry.createRegistry(1099);
+			LocateRegistry.createRegistry(1099);
 			System.out.println("RMI registry está pronto.");
 		
 		} catch (Exception e) {
@@ -36,7 +38,8 @@ public class RMIServer {
 			System.out.println("servidor está pronto");
                         //showRepositoryMenu();
 		} catch (MalformedURLException | RemoteException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
+			//System.out.println(e.getMessage());
 		}
 	}
         
