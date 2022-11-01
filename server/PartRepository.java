@@ -1,9 +1,12 @@
+package server;
 
 
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+
+import client.Part;
 
 /**
  *
@@ -16,10 +19,6 @@ public class PartRepository extends UnicastRemoteObject implements PartRepositor
 
     private String name;
 
-    private PartRepositoryMenu menu = new PartRepositoryMenu(this);
-    
-    
-
     public PartRepository() throws RemoteException{
         //super();
         lastCode = 0;        
@@ -30,7 +29,11 @@ public class PartRepository extends UnicastRemoteObject implements PartRepositor
     @Override
     public String getList() throws RemoteException{
         //System.out.println(parts.toString());
-        return parts.toString();
+        String ret = "";
+        for (Part part : parts) {
+          ret += part.show();
+        }
+        return ret;
     }
 
     @Override
@@ -54,9 +57,9 @@ public class PartRepository extends UnicastRemoteObject implements PartRepositor
         part.setCode(code);                     
         part.setName(name);
         part.setDescription(description);
-        System.out.println(part.toString());
+        System.out.println(part.show());
         parts.add(part);
-        System.out.println(part.toString());
+        System.out.println(part.show());
         lastCode++;
      }
 

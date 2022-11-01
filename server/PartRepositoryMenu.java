@@ -1,8 +1,12 @@
+package server;
 
 
 
 import java.rmi.RemoteException;
 import java.util.Scanner;
+
+import client.Part;
+import client.PartMenu;
 
 /**
  *
@@ -22,20 +26,19 @@ public class PartRepositoryMenu {
 
     String getOptions()throws RemoteException{
         String menu =           "***************************************************\n"
-				+ 	"*  Sistemas Distribuidos                           *\n"
-                                + 	"*  Tiago da Costa Farinon                          *\n"
-                                + 	"*  Cristian da Rosa Nunes                          *\n"                        
-				+ 	"*  Jonathan Forlin                                 *\n"
-				+ 	"*                                                  *\n"
-				+ 	"***************************************************\n"
-				+ 	"* 1 - Criar Repositorio                            *\n"
-				+       "* 2 - Adicionar peça ao Repositório                *\n"
-				+       "* 3 - Listar peças do Repositório                  *\n"
-				+       "* 4 - Busca peça no Repositório                    *\n"
-			 	+       "* 5 - Encerra                                      *\n"
-				
-				+ 	"***************************************************\n"
-				+ 	"Escolha o padrão que quer testar:";
+                            + 	"*  Sistemas Distribuidos                           *\n"
+                            + 	"*  Tiago da Costa Farinon                          *\n"
+                            + 	"*  Cristian da Rosa Nunes                          *\n"                        
+                            + 	"*  Jonathan Forlin                                 *\n"
+                            + 	"*                                                  *\n"
+                            + 	"***************************************************\n"
+                            + 	"* 1 - Criar Repositorio                            *\n"
+                            +   "* 2 - Adicionar peça ao Repositório                *\n"
+                            +   "* 3 - Listar peças do Repositório                  *\n"
+                            +   "* 4 - Busca peça no Repositório                    *\n"
+                            +   "* 5 - Encerra                                      *\n"				
+                            + 	"***************************************************\n"
+				            + 	"Escolha o padrão que quer testar:";
 	System.out.println(menu);	
         return menu;
     }
