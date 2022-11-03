@@ -1,9 +1,5 @@
-package server;
 
-
-import java.net.MalformedURLException;
 import java.rmi.Naming;
-import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.Scanner;
 
@@ -38,12 +34,28 @@ public class RMIServer {
 			Naming.rebind("PartRepository", objRemoto);
 			System.out.println("servidor está pronto");
                         //showRepositoryMenu();
-		} catch (MalformedURLException | RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			//System.out.println(e.getMessage());
 		}
 	}
         
-        
+	/* public static void main(String[] args) {
+        try {
+			// cria um objeto para se tornar acessível via rede
+        	PartRepositoryInterface partRepository = new PartRepository();
+
+            String objName = "PartRepository";
+			
+            System.out.println("Registrando o objeto no RMIRegistry...");
+
+			LocateRegistry.createRegistry(1099);
+            Naming.rebind(objName, partRepository);
+			
+            System.out.println("Aguardando Clientes!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }     */
 
 }

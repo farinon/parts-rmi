@@ -1,17 +1,13 @@
-package client;
-import java.net.MalformedURLException;
 import java.rmi.Naming;
-import java.rmi.NotBoundException;
+
 import java.rmi.RemoteException;
 import java.util.Scanner;
 
-import server.PartRepositoryInterface;
-
 public class RMIClient {
-	
+
 	static Scanner scanner = new Scanner(System.in);
-	
-	public static void main(String[] argv) throws RemoteException, MalformedURLException, NotBoundException {
+
+	public static void main(String[] argv) throws Exception {
 		try {
 			// bind server object to object in client
 			PartRepositoryInterface myServerObject = (PartRepositoryInterface) Naming.lookup("PartRepository");
@@ -54,7 +50,7 @@ public class RMIClient {
 	 * @param o
 	 * @throws RemoteException
 	 */
-	static void chooseRepositoryOption(int o, PartRepositoryInterface repository ) throws RemoteException {
+	static void chooseRepositoryOption(int o, PartRepositoryInterface repository) throws RemoteException {
 		Part part;
 
 		switch (o) {
@@ -88,9 +84,15 @@ public class RMIClient {
 			case 4:
 				System.out.println("Código da Peça: ");
 				int partCode = scanner.nextInt();
-				//part = new Part();
-				part = repository.getPart(partCode);
-				System.out.println(part.show());
+				String partInfo = repository.getPart(partCode);
+				if (partInfo != "") {
+					System.out.println(getPartOptions(partInfo));
+					int option = scanner.nextInt();
+					System.out.println(repository.choosePartOption(option,getPartArg(option)));
+					
+				}
+				;
+				// System.out.println(part.show());
 				break;
 			case 5:
 
@@ -105,6 +107,61 @@ public class RMIClient {
 			default:
 				getRepositoryOptions();
 		}
+	}
+
+	static String getPartOptions(String part) {
+		String menu = "***************************************************\n"
+				+ part + "\n"
+				+ "***************************************************\n"
+				+ "* 1 - Editar nome                           *\n"
+				+ "* 2 - Editar descritivo                          *\n"
+				+ "* 3 - Verificar se é peça primitiva ou agregada    *\n"
+				+ "* 4 - Quantidade de Subcomponentes                 *\n"
+				+ "* 5 - Listar Subcomponentes                       \n"
+				+ "* 6 - Esvazia a lista de Subcomponentes            \n"
+				+ "* 7 - Adicionar sub-componente                       \n"
+
+				+ "***************************************************\n"
+				+ "Escolha o padrão que quer testar:";
+		System.out.println(menu);
+		return menu;
+	}
+
+	static String getPartArg(int o) {
+		String arg = "";
+		switch (o) {
+			case 1:
+				// 1 - Editar nome
+				System.out.println("Nome da peça:");
+				arg = scanner.next();
+				return arg;
+			case 2:				
+				// 2 - Editar Descrição
+				System.out.println("Descrição da peça:");
+				arg = scanner.next();
+				return arg;
+			case 3:
+				// 3 - Verificar se é peça primitiva ou agregada
+				return arg;
+			case 4:
+				// 4 - Quantidade de Subcomponentes
+			 return arg;
+			case 5:
+				// 5 - Listar Subcomponentes
+				return arg;
+			case 6:
+				// 6 - Esvazia a lista de Subcomponentes
+				return arg;
+			case 7:
+				// 7 - Adicionar sub-componente
+				System.out.println("Nome da peça:");
+				arg = scanner.next() + ";";				
+				System.out.println("Descrição da peça:");
+				arg += scanner.next();
+				return arg;
+			default:
+				return arg;
+		}		
 	}
 
 }
